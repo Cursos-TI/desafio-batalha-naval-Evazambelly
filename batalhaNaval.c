@@ -1,91 +1,44 @@
 #include <stdio.h>
 
+#define TAMANHO_TABULEIRO 10
+#define TAMANHO_NAVIO 3
+
 int main() {
-    // Carta 1
-    char estado1;
-    char codigo1[4];
-    char nomeCidade1[100];
-    int populacao1;
-    float area1;
-    float pib1;
-    int pontosTuristicos1;
+    // 1. Tabuleiro 10x10 inicializado com água (valor 0)
+    int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO] = {0};
 
-    // Carta 2
-    char estado2;
-    char codigo2[4];
-    char nomeCidade2[100];
-    int populacao2;
-    float area2;
-    float pib2;
-    int pontosTuristicos2;
+    // 2. Navios representados por vetores
+    int navioHorizontal[TAMANHO_NAVIO] = {3, 3, 3}; // 3 representa parte do navio
+    int navioVertical[TAMANHO_NAVIO] = {3, 3, 3};
 
-    //Carta 1
-    printf("Digite os dados da Carta 1:\n");
+    // 3. Coordenadas iniciais para os navios
+    int linhaH = 2, colunaH = 4; // Início do navio horizontal
+    int linhaV = 5, colunaV = 7; // Início do navio vertical
 
-    printf("Estado (letra de A a H): ");
-    scanf(" %c", &estado1); 
+    // 4. Validação simplificada (manual, pois as coordenadas estão no código)
+    // Garantir que os navios não ultrapassem os limites
+    // (para navio horizontal, a coluna final deve ser <= 9)
+    // (para navio vertical, a linha final deve ser <= 9)
 
-    printf("Código da Carta (ex: A01): ");
-    scanf("%s", codigo1);
+    // 5. Posicionar navio horizontal no tabuleiro
+    for (int i = 0; i < TAMANHO_NAVIO; i++) {
+        tabuleiro[linhaH][colunaH + i] = navioHorizontal[i];
+    }
 
-    printf("Nome da Cidade: ");
-    scanf(" %[^\n]", nomeCidade1); 
+    // 6. Posicionar navio vertical no tabuleiro
+    for (int i = 0; i < TAMANHO_NAVIO; i++) {
+        tabuleiro[linhaV + i][colunaV] = navioVertical[i];
+    }
 
-    printf("População: ");
-    scanf("%d", &populacao1);
+    // 7. Exibir o tabuleiro no console
+    printf("Tabuleiro Batalha Naval:\n\n");
 
-    printf("Área (em km²): ");
-    scanf("%f", &area1);
-
-    printf("PIB (em bilhões): ");
-    scanf("%f", &pib1);
-
-    printf("Número de Pontos Turísticos: ");
-    scanf("%d", &pontosTuristicos1);
-
-    // Carta 2
-    printf("\nDigite os dados da Carta 2:\n");
-
-    printf("Estado (letra de A a H): ");
-    scanf(" %c", &estado2);
-
-    printf("Código da Carta (ex: B02): ");
-    scanf("%s", codigo2);
-
-    printf("Nome da Cidade: ");
-    scanf(" %[^\n]", nomeCidade2);
-
-    printf("População: ");
-    scanf("%d", &populacao2);
-
-    printf("Área (em km²): ");
-    scanf("%f", &area2);
-
-    printf("PIB (em bilhões): ");
-    scanf("%f", &pib2);
-
-    printf("Número de Pontos Turísticos: ");
-    scanf("%d", &pontosTuristicos2);
-
-    // Exibição carta 1
-    printf("\nCarta 1:\n");
-    printf("Estado: %c\n", estado1);
-    printf("Código: %s\n", codigo1);
-    printf("Nome da Cidade: %s\n", nomeCidade1);
-    printf("População: %d\n", populacao1);
-    printf("Área: %.2f km²\n", area1);
-    printf("PIB: %.2f bilhões de reais\n", pib1);
-    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos1);
-
-    // Exibição carta 2
-    printf("\nCarta 2:\n");
-    printf("Estado: %c\n", estado2);
-    printf("Código: %s\n", codigo2);
-    printf("Nome da Cidade: %s\n", nomeCidade2);
-    printf("População: %d\n", populacao2);
-    printf("Área: %.2f km²\n", area2);
-    printf("PIB: %.2f bilhões de reais\n", pib2);
-    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos2);
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n"); // Nova linha a cada linha do tabuleiro
+    }
 
     return 0;
 }
